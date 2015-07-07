@@ -1,0 +1,15 @@
+<h2><%= @problem.title %></h2>
+<div class="problem_body">
+<%= @problem.body %>
+</div>
+
+<%= form_tag @problem do |f| %>
+  <p>
+   	<%= label_tag :answer %><br />
+	<%= text_field_tag :answer %>
+  </p>
+  <p class="button"><%= submit_tag "Submit" %></p>
+
+  Correct Answer: <%= @problem.answer %>
+<% end %>
+

@@ -1,0 +1,12 @@
+<h1>Problems</h1>
+<% @problems.each do |problem| %>
+	<div class="problem">
+	<h2 class="problem_title"><%= problem.title %></h2>
+	<div class="problem_body"><%= problem.body %></div>
+	<%= link_to "Solve this problem!", problem_path(problem) %>
+	</div>
+<% end %>
+
+<% if session[:user_admin] %>
+	<%= link_to "Add a problem", new_problem_path %>
+<% end %>
