@@ -16,15 +16,8 @@ ActiveRecord::Schema.define(version: 20150706171658) do
   create_table "problems", force: :cascade do |t|
     t.string   "title"
     t.text     "body"
-    t.float    "answer"
-    t.text     "misc"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "solutions", force: :cascade do |t|
-    t.string   "title"
-    t.text     "body"
+    t.text     "answer"
+    t.text     "solution"
     t.text     "videolink"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
