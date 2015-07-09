@@ -6,7 +6,7 @@ class CreateProblems < ActiveRecord::Migration
       t.text :answer
       t.text :solution
       t.text :videolink
-
+      
       t.timestamps null: false
     end
   end
