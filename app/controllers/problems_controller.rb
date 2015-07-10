@@ -34,6 +34,13 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
 
   end
+
+  def destroy
+    @problem = Problem.find(params[:id])
+    @problem.destroy
+
+    redirect_to root_path
+  end
   
   def checkanswer
     @answer=Problem.find(params[:id]).answer.to_s

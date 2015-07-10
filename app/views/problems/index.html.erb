@@ -6,6 +6,7 @@
 			<div class="problem_title"><%= problem.title %> </div>
 		<% end %>
 		<span><%= link_to "Edit", edit_problem_path(problem) if session[:user_admin] %></span>
+		<span><%= link_to "Delete", problem_path(problem), method: :delete if session[:user_admin] %></span>
 	<% end %>
 </div>
 
