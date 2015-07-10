@@ -1,17 +1,2 @@
 <h1>Add a problem</h1>
-<%= form_for @problem do |f| %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_field :body %>
-  </p>
-  <p>
-    <%= f.label :answer %><br />
-    <%= f.text_field :answer %>
-  </p>
-  
-  <p class="button"><%= f.submit %></p>
-<% end %>
+<%= render partial: 'form', locals: {problem: @problem} %>

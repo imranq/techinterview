@@ -4,7 +4,7 @@ class ProblemsController < ApplicationController
   end
 
   def create
-  	@problem = Problem.new(params.require(:problem).permit(:title, :body, :answer)) 
+  	@problem = Problem.new(problem_params) 
   	if @problem.save
   		redirect_to @problem
   	else
@@ -49,6 +49,6 @@ class ProblemsController < ApplicationController
   private
 
     def problem_params
-      params.require(:problem).permit(:title, :body, :answer)
+      params.require(:problem).permit(:title, :body, :answer, :tag_list)
     end
 end

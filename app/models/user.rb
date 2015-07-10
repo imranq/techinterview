@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	validates :password, presence: true, confirmation: true, :on => :create
 	validates :email, presence:true, uniqueness: true 
 
+	
 	def encrypt_password
 		if password.present?
 			self.password_salt = BCrypt::Engine.generate_salt
