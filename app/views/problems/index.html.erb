@@ -1,17 +1,24 @@
 
-<div id="problem_container">
-	<h1>Problems</h1>
+<div class="problems">
 	<% @problems.each do |problem| %>
-		<%= link_to problem_path(problem) do %>
-			<div class="problem_title"><%= problem.title %> </div>
-		<% end %>
-		<span><%= link_to "Edit", edit_problem_path(problem) if session[:user_admin] %></span>
-		<span><%= link_to "Delete", problem_path(problem), method: :delete if session[:user_admin] %></span>
-	<% end %>
-</div>
+		<div class="problem">
+			<%= link_to problem_path(problem) do %>
+				<div class="title"><%= problem.title %> </div>
+			<% end %>
+				<div class="body"><%= truncate(problem.body, length: 300) %> </div>
+			<%= displayTags(problem) %>
 
-<div class="admin">
-<% if session[:user_admin] %>
-	<%= link_to "Add a problem", new_problem_path %>
-<% end %>
+
+			<% if session[:user_admin] %>
+			
+			<br/>
+			
+			<div class="edit_problem">
+				<%= button_to "Edit", edit_problem_path(problem), :class => "edit btn btn-warning", method: :get, :style => "display: inline-block;"  %>
+				<%= button_to "Delete", problem_path(problem), method: :delete, :class => "delete btn btn-danger", :style => "display: inline-block;" %>
+			</div>
+			
+			<% end %>
+		</div>
+	<% end %>
 </div>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Prep - CS, Finance, Consulting Interview Training</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<nav id="sidebar-wrapper" role="navigation">
+		<div id="site_description"> 
+			Welcome to Sweater Collars, where we make it easy for you to pass your interviews!
+		</div>
+		<div class="button">Mental Math</div>
+	</nav>
+
+	<div id="page-wrapper" class="">
+		  <nav class="nav" id="horizontal nav">
+		    <div id="logo" class="navbar-brand"><%= link_to "Prep", root_path %></div>
+		    <ul class="nav navbar-nav navbar-left" id="searchbar">
+		    	<li>Search: </li>
+		    	<li>Search for questions...</li>
+		    </ul>
+		    <% if session[:user_admin] and session[:user_id] %>
+		        <ul class="nav navbar-nav navbar-right">
+		          <li><%= link_to 'Account', edit_user_path(session[:user_id]) %></li>
+		          <li><%= link_to 'Sign out', logout_path(session[:user_id]) %></li>
+		        </ul>
+		    <% end %>
+		  </nav>			
+
+		<div id="main_content">
+			<% flash.each do |name, msg| %>
+			  <%= content_tag :div, msg, :id => "flash_#{name}" %>
+			<% end %>
+
+			<%= yield %>
+		</div>
+	</div>
+</body>
+</html>

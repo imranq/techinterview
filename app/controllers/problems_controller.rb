@@ -1,6 +1,10 @@
 class ProblemsController < ApplicationController
   def index
-  	@problems = Problem.all
+    if params[:tag]
+       @problems = Problem.tagged_with(params[:tag])
+    else
+  	   @problems = Problem.all.order('created_at DESC')
+    end
   end
 
   def create
@@ -42,7 +46,7 @@ class ProblemsController < ApplicationController
     redirect_to root_path
   end
   
-  def checkanswer
+  def checkanswer    
     @answer=Problem.find(params[:id]).answer.to_s
     if @answer == params[:answer]
       flash[:success] = "Correct answer!" #update users table with information that this is correct

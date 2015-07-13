@@ -1,19 +1,21 @@
-<%= form_for problem do |f| %>
-  <p>
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
-  </p>
-  <p>
-    <%= f.label :body %><br />
-    <%= f.text_field :body %>
-  </p>
-  <p>
-    <%= f.label :answer %><br />
-    <%= f.text_field :answer %>
-  </p>
+<div class="problem">
+  <%= form_for problem, :class => "form-control" do |f| %>
     <p>
-    <%= f.label :tag_list %><br />
-    <%= f.text_field :tag_list %>
-  </p>
-  <p class="button"><%= f.submit %></p>
-<% end %>
+      <%= f.label :title %><br />
+      <%= f.text_field :title, :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :body %><br />
+      <%= f.text_field :body, :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :answer %><br />
+      <%= f.text_field :answer, :class => "form-control" %>
+    </p>
+      <p>
+      <%= f.label :tag_list %><br />
+      <%= f.text_field :tag_list, :class => "form-control" %>
+    </p>
+    <%= f.submit "#{label}", :class => "btn btn-success" %>
+  <% end %>
+</div>

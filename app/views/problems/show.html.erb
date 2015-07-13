@@ -1,16 +1,23 @@
-<h2><%= @problem.title %></h2>
-<div class="problem_body">
-<%= @problem.body %>
+<div class="problem">
+	<h2><%= @problem.title %></h2>
+	<div class="problem_body">
+	<%= @problem.body %>
+	</div>
+	
+	<%= displayTags(@problem) %>
+
+	
+
+	<%= form_for @problem, :class => 'form-control' do |f| %>
+	   	<%= f.label "Answer" %><br />
+		<%= f.text_field :answer, :class => "answer-field form-control" %>
+		<%= f.submit "Submit", :class => "btn btn-success active", method: :post %>
+	<% end %>
 </div>
-<%= @problem.tag_list %>
 
-<%= form_tag @problem do |f| %>
-  <p>
-   	<%= label_tag :answer %><br />
-	<%= text_field_tag :answer %>
-  </p>
-  <p class="btn"><%= submit_tag "Submit" %></p>
-
-  Correct Answer: <%= @problem.answer %>
+<% if session[:user_admin] %>
+	<div class="edit_problem">
+		<%= button_to "Edit", edit_problem_path(@problem), :class => "edit btn btn-warning", method: :get, :style => "display: inline-block;"  %>
+		<%= button_to "Delete", problem_path(@problem), method: :delete, :class => "delete btn btn-danger", :style => "display: inline-block;" %>
+	</div>	
 <% end %>
-

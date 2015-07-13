@@ -7,3 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 admin_user = User.create(email: "imranq02@gmail.com", password: "zeeshan", password_confirmation: "zeeshan", admin: true)
+
+# convert Excel to csv and csv to db

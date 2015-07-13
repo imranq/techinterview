@@ -7,34 +7,45 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<header class="navbar navbar-default" role="navigation">
-	<div class="navbar-inner">
-	  <div class="container">
-	    <div id="logo" class="navbar-brand"><%= link_to "Prep", root_path %></div>
-	    <nav class="collapse navbar-collapse navbar-ex1-collapse">
-	      <% if session[:user_admin] and session[:user_id] %>
-	        <ul class="nav navbar-nav navbar-right">
-	          <li><%= link_to 'Account', edit_user_path(session[:user_id]) %></li>
-	          <li><%= link_to 'Sign out', logout_path(session[:user_id]) %></li>
-	        </ul>
-	      <% end %>
-	    </nav>
-	  </div>
-	</div>
-	</header>
-
-	<div id="sidebar-wrapper">
-		<div id="site_description"> 
-			Welcome to Sweater Collars, where we make it easy for you to pass your interviews!
+	<div class="container">
+	    <div class="about">
+		  <h1>
+		  <%= link_to "techsurge", root_path, :class => "logo" %>
+		  </h1>
+		  
+		  <h2>Your one source for the best interview questions - train for your next CS, Finance, or Consulting interview</h2>
+		  
+		  <div class="user-dashboard">
+		    <br />
+		    <ul>
+		        <h3>User Dashboard</h3>
+		    <% if session[:user_id] %>
+		          <li><%= link_to 'Account', edit_user_path(session[:user_id]) %></li>
+		          <li><%= link_to 'Dashboard', '/users' %></li>
+		          <li><%= link_to 'Sign out', logout_path(session[:user_id]) %></li>
+		    <% else %>
+		    	  <li><%= link_to 'Sign In', login_path %></li>
+		    	  <li><%= link_to 'Create new account', new_user_path %></li>    
+	   		<% end %>
+		  </div>
+		  
+		  <p>100% free and no B.S guaranteed!</p>
+		    
+		  <p>Last updated <%= time_ago_in_words(Problem.last.created_at) if Problem.last != nil  %> ago</p>
+		  	<% if session[:user_admin] %>
+	     		<%= button_to 'Add a problem', new_problem_path, :class => "add_problem btn btn-danger btn-lg", method: :get %></li></button>
+			<% end %>
 		</div>
-		<div class="button">Mental Math</div>
-	</div>
-	<div id="main_content">
-		<% flash.each do |name, msg| %>
-		  <%= content_tag :div, msg, :id => "flash_#{name}" %>
-		<% end %>
-
-		<%= yield %>
+		<div id="main-content">
+			<div id="notices">
+				<% flash.each do |name, msg| %>
+				  <div id="flash-message">
+				  	<%= content_tag :div, msg, :id => "flash_#{name}" %>
+				  </div>
+				<% end %>
+			</div>
+			<%= yield %>
+		</div>
 	</div>
 </body>
 </html>
