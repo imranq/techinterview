@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get '/login' => 'sessions#new', :as => "login"
   get '/logout' => 'sessions#destroy', :as => "logout"
 
-  post '/problems/:id' => 'problems#checkanswer'
+  post '/problems/:id' => 'problems#checkanswer', :as => "checkanswer"
   
   get 'tags/:tag', to: 'articles#index', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.
