@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   post '/problems/:id' => 'problems#checkanswer', :as => "checkanswer"
   
   get 'tags/:tag', to: 'articles#index', as: :tag
+
+  mathjax ''
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

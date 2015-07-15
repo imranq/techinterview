@@ -4,7 +4,7 @@
 	<%= @problem.body %>
 	</div>
 	
-	<%= displayTags(@problem) %>
+	
 
 	
 
@@ -12,6 +12,7 @@
 		<%= text_field_tag :answer, "Enter your answer...", class: "answer-field form-control", autofocus: true  %>
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
+	<%= displayTags(@problem) %>
 </div>
 
 <% if session[:user_admin] %>

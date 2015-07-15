@@ -1,12 +1,14 @@
 <div class="problem">
-  <%= form_for problem, :class => "form-control" do |f| %>
+  <%= form_for problem, :class => "form-control full-width", :id => "problem_form" do |f| %>
     <p>
       <%= f.label :title %><br />
       <%= f.text_field :title, :class => "form-control" %>
     </p>
     <p>
       <%= f.label :body %><br />
-      <%= f.text_field :body, :class => "form-control" %>
+      <%= f.text_area :body, :class => "form-control", :id => "problem-body", :style => "width: 475px; height: 225px;", :name => "text_area" %>
+      <p name="preview" id="preview-problem-body"><%= problem.body %></p>
+
     </p>
     <p>
       <%= f.label :answer %><br />
@@ -19,3 +21,96 @@
     <%= f.submit "#{label}", :class => "btn btn-success" %>
   <% end %>
 </div>
+
+<p name="test" id="test"></p>
+
+<script>
+  var last_keys = [];
+  var in_math = false;
+  var math_formulas = [];
+  
+  window.onload = function() {
+    
+    // math_formulas = math_array($("#preview-problem-body").val());
+
+    $("#problem-body").keyup(function(e) {
+        //need to know if typing in a \[ ] frame <-- won't work
+        // if (last_keys.unshift(String.fromCharCode(e.which)) > 2) { //returns the length
+        //     last_keys = last_keys.slice(0,2);
+        // }
+        
+        // last_two_keys = last_keys.join('');
+
+        // if (last_two_keys == "\[" &&  in_math == false) {
+        //     in_math = true;
+        // }
+        // else if (last_two_keys == "\]" &&  in_math == true) {
+        //     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        //     in_math = false;
+        // }
+        $("#preview-problem-body").text( this.value );
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        
+    });
+
+    // function math_array (tx) {
+    //   tx.split("\[");
+    //   result = [];
+    //   tx.forEach(function(entry) {
+    //     result.append(entry.split("\]"));
+
+    //   });
+
+  }
+
+    // $("#problem-body").onblur(function() {
+    //   $("#preview-problem-body").val( this.value );
+    //   MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+    // });
+
+  // jQuery.fn.extend({
+  // insertAtCaret: function(myValue){
+  //   return this.each(function(i) {
+  //     if (document.selection) {
+  //       //For browsers like Internet Explorer
+  //       this.focus();
+  //       var sel = document.selection.createRange();
+  //       sel.text = myValue;
+  //       this.focus();
+  //     }
+  //     else if (this.selectionStart || this.selectionStart == '0') {
+  //       //For browsers like Firefox and Webkit based
+  //       var startPos = this.selectionStart;
+  //       var endPos = this.selectionEnd;
+  //       var scrollTop = this.scrollTop;
+  //       this.value = this.value.substring(0, startPos)+myValue+this.value.substring(endPos,this.value.length);
+  //       this.focus();
+  //       this.selectionStart = startPos + myValue.length;
+  //       this.selectionEnd = startPos + myValue.length;
+  //       this.scrollTop = scrollTop;
+  //     } else {
+  //       this.value += myValue;
+  //       this.focus();
+  //     }
+  //   });
+  // }
+  // });
+</script>
+
+<style>
+#preview-problem-body {
+  background: #F3F3F3;
+  border: 1px solid #DED;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  padding: 10px;
+
+}
+
+#problem_form {
+  min-width:100%;
+
+
+}
+</style>

@@ -27,6 +27,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'seed_dump'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'acts-as-taggable-on'
+gem 'mathjax-rails'
 
 
 # Use ActiveModel has_secure_password
