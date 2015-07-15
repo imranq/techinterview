@@ -1,22 +1,30 @@
 <div class="problem">
   <%= form_for problem, :class => "form-control full-width", :id => "problem_form" do |f| %>
     <p>
-      <%= f.label :title %><br />
+      <%= f.label :title %>
       <%= f.text_field :title, :class => "form-control" %>
     </p>
     <p>
-      <%= f.label :body %><br />
-      <%= f.text_area :body, :class => "form-control", :id => "problem-body", :style => "width: 475px; height: 225px;", :name => "text_area" %>
+      <%= f.label :body %>
+      <%= f.text_area :body, :class => "form-control", :id => "problem-body", :style => "" %>
       <p name="preview" id="preview-problem-body"><%= problem.body %></p>
-
     </p>
     <p>
-      <%= f.label :answer %><br />
+      <%= f.label :answer %>
       <%= f.text_field :answer, :class => "form-control" %>
     </p>
-      <p>
-      <%= f.label :tag_list %><br />
+    <p>
+      <%= f.label :solution %>
+      <%= f.text_area :solution, :class => "form-control", :id => "solution-body", :style => ""%>
+      <p name="preview" id="preview-solution-body"></p>
+    </p>
+    <p>
+      <%= f.label :tag_list %>
       <%= f.text_field :tag_list, :class => "form-control" %>
+    </p>
+    <p>
+      <%= f.label :videolink %>
+      <%= f.text_field :videolink, :class => "form-control" %>
     </p>
     <%= f.submit "#{label}", :class => "btn btn-success" %>
   <% end %>
@@ -30,8 +38,10 @@
   var math_formulas = [];
   
   window.onload = function() {
-    
+    // go for inline calculation for general problems...unless jQuery has a calculator, need to send to rails page to get result of expression
+    // answers will require points...need to answer one question successfully before getting answer...may also add hints
     // math_formulas = math_array($("#preview-problem-body").val());
+
 
     $("#problem-body").keyup(function(e) {
         //need to know if typing in a \[ ] frame <-- won't work
@@ -60,7 +70,12 @@
     //     result.append(entry.split("\]"));
 
     //   });
-
+    $("#solution-body").keyup(function(e) {
+        $("#preview-solution-body").text( this.value );
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    });
+    $("#problem-body").keyup();
+    $("#solution-body").keyup();
   }
 
     // $("#problem-body").onblur(function() {
@@ -99,7 +114,7 @@
 </script>
 
 <style>
-#preview-problem-body {
+#preview-problem-body, #preview-solution-body  {
   background: #F3F3F3;
   border: 1px solid #DED;
   border-radius: 4px;
@@ -113,4 +128,11 @@
 
 
 }
+
+#problem-body, #solution-body {
+  padding: 12px;
+  width: 475px; 
+  height: 225px;
+}
+
 </style>

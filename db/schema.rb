@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710054519) do
+ActiveRecord::Schema.define(version: 20150715014751) do
 
   create_table "problems", force: :cascade do |t|
     t.string   "title"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(version: 20150710054519) do
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+
+  create_table "user_metrics", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "problem_id"
+    t.boolean  "anwered_correctly"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email"

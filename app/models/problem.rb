@@ -1,12 +1,11 @@
 class Problem < ActiveRecord::Base
-	has_many :solutions #, :taggings
 	#has_many :tags, through: :taggings
 
 	belongs_to :user
 
 	acts_as_taggable
 	acts_as_taggable_on :problems
-	validates :body, presence: true
+	# validates :body, presence: true
 	validates :title, presence: true
 	validates :answer, presence: true
 

@@ -52,7 +52,10 @@ h1, h2 {
     display:inline-block;
 }
 
+form p {
+    margin-bottom: 20px;
 
+}
 .flash-message {
   &.error {
     border: solid 4px #900;

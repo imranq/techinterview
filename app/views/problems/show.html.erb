@@ -1,3 +1,7 @@
+<%
+	placeholder = "Enter your answer..."
+
+%>
 <div class="problem">
 	<h2><%= @problem.title %></h2>
 	<div class="problem_body">
@@ -9,9 +13,11 @@
 	
 
 	<%= form_tag :action => "checkanswer", :class => 'form-control' do  %>
-		<%= text_field_tag :answer, "Enter your answer...", class: "answer-field form-control", autofocus: true  %>
+		<%= text_field_tag :answer, placeholder, class: "answer-field form-control", autofocus: true  %>
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
+	<input class="btn btn-warning" id="showhide-answer" value="Show Answer" />
+	<p class="solution" style="display:none;"><%= @problem.solution %></p>
 	<%= displayTags(@problem) %>
 </div>
 
@@ -21,3 +27,38 @@
 		<%= button_to "Delete", problem_path(@problem), method: :delete, :class => "delete btn btn-danger", :style => "display: inline-block;" %>
 	</div>	
 <% end %>
+
+<script>
+	var placeholder = "<%= placeholder %>"
+	$(function() {  
+      $('.answer-field').focusin(function() {
+        input = $(this);
+        input.data(placeholder, input.attr('placeholder'))
+        input.attr('placeholder', '');
+      });
+
+      $('input').focusout(function() {
+          input = $(this);
+          input.attr('placeholder', input.data(placeholder));
+      });
+	});
+
+	window.onload = function(){
+		$('#showhide-answer').click(function(){
+			if ($(this).val() == "Show Answer") {
+				$(this).val("Hide Answer");
+				$('.solution').show();
+				MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+
+			}
+			else {
+				$(this).val("Show Answer")
+				$('.solution').hide();
+			}
+			
+
+		});
+
+	}
+
+</script>

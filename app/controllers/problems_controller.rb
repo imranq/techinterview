@@ -48,6 +48,8 @@ class ProblemsController < ApplicationController
   
   def checkanswer    
     @answer=Problem.find(params[:id]).answer.to_s
+    
+
     if @answer == params[:answer]
       flash[:success] = "Correct answer!" #update users table with information that this is correct
       #redirect_to @problem
@@ -60,6 +62,6 @@ class ProblemsController < ApplicationController
   private
 
     def problem_params
-      params.require(:problem).permit(:title, :body, :answer, :tag_list)
+      params.require(:problem).permit(:title, :body, :answer, :solution, :tag_list, :videolink)
     end
 end
