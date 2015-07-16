@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboards/index'
+
   resources :problems
   resources :users
   resources :sessions
@@ -13,6 +15,8 @@ Rails.application.routes.draw do
   post '/problems/:id' => 'problems#checkanswer', :as => "checkanswer"
   
   get 'tags/:tag', to: 'articles#index', as: :tag
+
+  get '/dashboard' => 'user_metrics#index', as: "dashboard"
 
   mathjax ''
 

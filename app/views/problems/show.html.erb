@@ -14,6 +14,7 @@
 
 	<%= form_tag :action => "checkanswer", :class => 'form-control' do  %>
 		<%= text_field_tag :answer, placeholder, class: "answer-field form-control", autofocus: true  %>
+		<%= hidden_field_tag :time_accessed, Time.now %>
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
 	<input class="btn btn-warning" id="showhide-answer" value="Show Answer" />
@@ -58,7 +59,9 @@
 			
 
 		});
+		MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 	}
+
 
 </script>

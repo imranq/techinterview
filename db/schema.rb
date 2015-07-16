@@ -46,9 +46,9 @@ ActiveRecord::Schema.define(version: 20150715014751) do
   create_table "user_metrics", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "problem_id"
-    t.boolean  "anwered_correctly"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.boolean  "answered_correctly"
+    t.datetime "time_accessed"
+    t.datetime "time_submitted"
   end
 
   create_table "users", force: :cascade do |t|

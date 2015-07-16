@@ -4,6 +4,8 @@
   <title>Prep - CS, Finance, Consulting Interview Training</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
   <%= mathjax_tag %>
   <script>
       MathJax.Hub.Config({
@@ -12,6 +14,7 @@
           processEscapes: true
         }
        });
+
   </script>
   <%= csrf_meta_tags %>
 </head>
@@ -30,7 +33,7 @@
 		        <h3>User Dashboard</h3>
 		    <% if session[:user_id] %>
 		          <li><%= link_to 'Account', edit_user_path(session[:user_id]) %></li>
-		          <li><%= link_to 'Dashboard', '/users' %></li>
+		          <li><%= link_to 'Dashboard', '/dashboard' %></li>
 		          <li><%= link_to 'Sign out', logout_path(session[:user_id]) %></li>
 		    <% else %>
 		    	  <li><%= link_to 'Sign In', login_path %></li>

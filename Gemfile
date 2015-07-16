@@ -28,6 +28,8 @@ gem 'seed_dump'
 gem 'bootstrap-sass', '~> 3.3.5'
 gem 'acts-as-taggable-on'
 gem 'mathjax-rails'
+gem "chartkick"
+gem 'groupdate'
 
 
 # Use ActiveModel has_secure_password
