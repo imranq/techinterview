@@ -1,11 +1,8 @@
-<%
-	placeholder = "Enter your answer..."
 
-%>
 <div class="problem">
 	<h2><%= @problem.title %></h2>
 	<div class="problem_body">
-	<%= @problem.body %>
+	<%= simple_format(@problem.body) %>
 	</div>
 	
 	
@@ -13,7 +10,7 @@
 	
 
 	<%= form_tag :action => "checkanswer", :class => 'form-control' do  %>
-		<%= text_field_tag :answer, placeholder, class: "answer-field form-control", autofocus: true  %>
+		<%= text_field_tag :answer, params[:answer], class: "answer-field form-control", :placeholder => "Enter your Answer...", autofocus: true  %>
 		<%= hidden_field_tag :time_accessed, Time.now %>
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
@@ -30,7 +27,7 @@
 <% end %>
 
 <script>
-	var placeholder = "<%= placeholder %>"
+	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 
 	window.onload = function(){
@@ -47,17 +44,7 @@
 			}
 			
 
-		});
-
-		 $('.answer-field').focusin(function() {
-	        $(this).data(placeholder, $(this).attr('placeholder'))
-	        $(this).attr('placeholder', '');
-	      });
-
-	      $('.answer-field').focusout(function() {
-	          $(this).attr('placeholder', input.data(placeholder));
-	      });	
-		MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+		});	
 
 	}
 

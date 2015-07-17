@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   post '/problems/:id' => 'problems#checkanswer', :as => "checkanswer"
   
-  get 'tags/:tag', to: 'articles#index', as: :tag
+  get 'tags/:tag', to: 'problems#index', as: :tag
 
   get '/dashboard' => 'user_metrics#index', as: "dashboard"
 

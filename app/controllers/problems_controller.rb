@@ -1,11 +1,14 @@
 class ProblemsController < ApplicationController
   def index
-    if params[:tag]
+    if params[:search]
+       @problems = (Problem.search(params[:search])) #+Problem.tagged_with(params[:search])).uniq
+    elsif params[:tag]
        @problems = Problem.tagged_with(params[:tag])
     else
   	   @problems = Problem.all.order('created_at DESC')
     end
   end
+
 
   def create
   	@problem = Problem.new(problem_params) 
@@ -71,6 +74,6 @@ class ProblemsController < ApplicationController
   private
 
     def problem_params
-      params.require(:problem).permit(:title, :body, :answer, :solution, :tag_list, :videolink, :time_accessed)
+      params.require(:problem).permit(:title, :body, :answer, :solution, :tag_list, :videolink, :time_accessed, :search)
     end
 end

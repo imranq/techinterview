@@ -58,7 +58,7 @@
         //     MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         //     in_math = false;
         // }
-        $("#preview-problem-body").text( this.value );
+        $("#preview-problem-body").html( this.value.replace(/\n/g, '<br />') );
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
         
     });
@@ -71,7 +71,7 @@
 
     //   });
     $("#solution-body").keyup(function(e) {
-        $("#preview-solution-body").text( this.value );
+        $("#preview-solution-body").html( this.value.replace(/\n/g, '<br />') );
         MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
     });
     $("#problem-body").keyup();

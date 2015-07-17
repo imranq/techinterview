@@ -29,10 +29,6 @@ a:hover {
     //color: #2c2c2c;
 }
 
-a {
-    color: black;
-}
-
 h1, h2 {
     margin-top: 0px;
     margin-bottom: 20px;
@@ -249,6 +245,10 @@ body {
 
 .tag {
     margin-right: 5px;
+}
+
+.tag_label a {
+    color: #efe;
 }
 
 .edit_problem {

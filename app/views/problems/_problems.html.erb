@@ -1,0 +1,25 @@
+<% @problems.each do |problem| %>
+	<div class="problem">
+		<%= link_to problem_path(problem) do %>
+			<div class="title"><%= problem.title %> </div>
+		<% end %>
+			<div class="body"><%= truncate(problem.body, length: 300) %> </div>
+		<%= displayTags(problem) %>
+
+
+		<% if session[:user_admin] %>
+		
+		<br/>
+		
+		<div class="edit_problem">
+			<%= button_to "Edit", edit_problem_path(problem), :class => "edit btn btn-warning", method: :get, :style => "display: inline-block;"  %>
+			<%= button_to "Delete", problem_path(problem), method: :delete, :class => "delete btn btn-danger", :style => "display: inline-block;" %>
+		</div>
+		
+		<% end %>
+	</div>
+<% end %>
+
+<script>
+    MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+</script>

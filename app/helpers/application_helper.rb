@@ -9,7 +9,7 @@ module ApplicationHelper
 		unless problem.tags.blank?
 		    data = '<div class="tags">'
 		    problem.tags.map(&:name).each do |t|
-		    	data << '<span class="tag label label-default">'+ t + '</span>'
+		    	data << '<span class="tag label label-default">'+ t + '</span>' #(link_to t, '/')
 			end	
 			data << '</div>'  
 	 	end
