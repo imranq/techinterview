@@ -18,7 +18,7 @@
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
 	<input class="btn btn-warning" id="showhide-answer" value="Show Answer" />
-	<p class="solution" style="display:none;"><%= @problem.solution %></p>
+	<p class="solution" style=""><%= @problem.solution %></p>
 	<%= displayTags(@problem) %>
 </div>
 
@@ -31,18 +31,7 @@
 
 <script>
 	var placeholder = "<%= placeholder %>"
-	$(function() {  
-      $('.answer-field').focusin(function() {
-        input = $(this);
-        input.data(placeholder, input.attr('placeholder'))
-        input.attr('placeholder', '');
-      });
 
-      $('input').focusout(function() {
-          input = $(this);
-          input.attr('placeholder', input.data(placeholder));
-      });
-	});
 
 	window.onload = function(){
 		$('#showhide-answer').click(function(){
@@ -59,9 +48,46 @@
 			
 
 		});
+
+		 $('.answer-field').focusin(function() {
+	        $(this).data(placeholder, $(this).attr('placeholder'))
+	        $(this).attr('placeholder', '');
+	      });
+
+	      $('.answer-field').focusout(function() {
+	          $(this).attr('placeholder', input.data(placeholder));
+	      });	
 		MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 	}
 
 
 </script>
+
+<style>
+form {
+	display: inline;
+
+
+}
+
+.answer-field {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#showhide-answer {
+	margin-left: 10px;
+
+
+}
+
+.solution {
+	display:none;
+	margin-top: 15px;
+	padding: 10px;
+	border-radius: 5px;
+	border: solid 1px #DBDBDB;
+	background: #F3F3F3;
+}
+</style>
