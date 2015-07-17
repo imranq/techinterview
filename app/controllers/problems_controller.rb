@@ -51,6 +51,8 @@ class ProblemsController < ApplicationController
   end
   
   def checkanswer    
+    # will eventually do some post-processing to change the answer into different formats
+    # - multiple choice, latex, numbers only
     @answer=Problem.find(params[:id]).answer.to_s
     answered_correctly = false
 
@@ -63,7 +65,7 @@ class ProblemsController < ApplicationController
       answered_correctly = false
     end
 
-    if true
+    if session[:user_id]
       @metrics = UserMetric.new(:user_id => session[:id], :problem_id => params[:id], :answered_correctly => answered_correctly, :time_accessed => params[:time_accessed], :time_submitted => Time.now)
       @metrics.save
     end

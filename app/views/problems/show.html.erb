@@ -15,7 +15,9 @@
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
 	<input class="btn btn-warning" id="showhide-answer" value="Show Answer" />
-	<p class="solution" style=""><%= @problem.solution %></p>
+	<div class="solution">
+		<%= simple_format(@problem.solution) %>
+	</div>
 	<%= displayTags(@problem) %>
 </div>
 
@@ -30,8 +32,8 @@
 	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
 
 
-	window.onload = function(){
-		$('#showhide-answer').click(function(){
+	$(document).ready(function(){
+		$('#showhide-answer').click(function(){ //eventually will use serverside points to get users answers
 			if ($(this).val() == "Show Answer") {
 				$(this).val("Hide Answer");
 				$('.solution').show();
@@ -46,7 +48,7 @@
 
 		});	
 
-	}
+	});	
 
 
 </script>
@@ -59,7 +61,7 @@ form {
 }
 
 .answer-field {
-	margin-top: 10px;
+	margin-top: 30px;
 	margin-bottom: 10px;
 }
 
