@@ -1,24 +1,26 @@
-
 <div class="problem">
 	<h2><%= @problem.title %></h2>
 	<div class="problem_body">
 	<%= simple_format(@problem.body) %>
 	</div>
-	
-	
 
-	
-
-	<%= form_tag :action => "checkanswer", :class => 'form-control' do  %>
+	<%= form_tag :action => "checkanswer", :class => 'form-control answer-form' do  %>
 		<%= text_field_tag :answer, params[:answer], class: "answer-field form-control", :placeholder => "Enter your Answer...", autofocus: true  %>
 		<%= hidden_field_tag :time_accessed, Time.now %>
 		<%= submit_tag "Submit", :class => "btn btn-success active", method: :post %>
 	<% end %>
+
 	<input class="btn btn-warning" id="showhide-answer" value="Show Answer" />
 	<div class="solution">
 		<%= simple_format(@problem.solution) %>
 	</div>
 	<%= displayTags(@problem) %>
+</div>
+
+<div class="<%= showFlash(flash[:answered_correctly]) %>" id="answer-notice">
+	<% if !flash[:answered_correctly].nil? %>
+		<%= flash[:answered_correctly]=="correct" ? "Correct answer!" : "Try again! You answer of #{flash[:answer_submitted]} was not correct" %>
+	<% end %>
 </div>
 
 <% if session[:user_admin] %>
@@ -27,6 +29,8 @@
 		<%= button_to "Delete", problem_path(@problem), method: :delete, :class => "delete btn btn-danger", :style => "display: inline-block;" %>
 	</div>	
 <% end %>
+
+
 
 <script>
 	MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
@@ -54,10 +58,9 @@
 </script>
 
 <style>
+
 form {
 	display: inline;
-
-
 }
 
 .answer-field {
@@ -65,10 +68,33 @@ form {
 	margin-bottom: 10px;
 }
 
+.answer-form {
+	
+}
+
+#answer-notice {
+	margin-top: 0px;
+	margin-bottom: 10px;
+	color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+	display:block;
+	width: 100%;
+	visibility: hidden;
+}
+
+#answer-notice.incorrect {
+	background: #DCB440;
+	visibility: visible;
+}
+
+#answer-notice.correct {
+	background: #25DC3F;
+	visibility: visible;
+}
+
 #showhide-answer {
 	margin-left: 10px;
-
-
 }
 
 .solution {

@@ -26,7 +26,7 @@ class Problem < ActiveRecord::Base
 	
 	def self.search(search)
 	    if search
-	      	result = where('body LIKE :search or title LIKE :search', search: "%#{search}%")
+	      	result = where('LOWER(body) LIKE LOWER(:search) or LOWER(title) LIKE LOWER(:search)', search: "%#{search}%")
 	    else
 	      scoped
 	    end 

@@ -22,7 +22,7 @@
 	<div class="container">
 	    <div class="about">
 		  <h1>
-		  <%= link_to "techsurge", root_path, :class => "logo" %>
+		  	<%= link_to "techsurge", root_path, :class => "logo" %>
 		  </h1>
 		  
 		  <h2>Your one source for the best interview questions - train for your next CS, Finance, or Consulting interview</h2>
@@ -50,10 +50,12 @@
 		</div>
 		<div id="main-content">
 			<div id="notices">
-				<% flash.each do |name, msg| %>
-				  <div id="flash-message">
-				  	<%= content_tag :div, msg, :id => "flash_#{name}" %>
-				  </div>
+				<% if flash[:alert] %>
+					<p class="flash-error"><%= flash[:alert] %></p>
+				<% end %>
+				
+				<% if flash[:notice] %>
+					<p class="flash-notice"><%= flash[:notice] %></p>
 				<% end %>
 			</div>
 			<%= yield %>

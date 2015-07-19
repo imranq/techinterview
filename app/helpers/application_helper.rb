@@ -16,5 +16,10 @@ module ApplicationHelper
 	 	data.html_safe
 	end
 
+	def showFlash(fl)
+		if !fl.nil?
+			fl
+		end
+	end
 
 end

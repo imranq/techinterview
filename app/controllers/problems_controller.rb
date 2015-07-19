@@ -55,13 +55,13 @@ class ProblemsController < ApplicationController
     # - multiple choice, latex, numbers only
     @answer=Problem.find(params[:id]).answer.to_s
     answered_correctly = false
-
-    if @answer == params[:answer]
-      flash[:success] = "Correct answer!" #update users table with information that this is correct
+    flash[:answer_submitted] = params[:answer]
+    if @answer.downcase == params[:answer].downcase
+      flash[:answered_correctly] = "correct" #update users table with information that this is correct
       #redirect_to @problem
       answered_correctly = true
     else
-      flash[:success] = "Your answer of #{params[:answer]} was not correct...the correct answer was #{@answer}" #need some validation to prevent bots from entering information
+      flash[:answered_correctly] = "incorrect" #need some validation to prevent bots from entering information
       answered_correctly = false
     end
 
