@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   get '/dashboard' => 'user_metrics#index', as: "dashboard"
 
+  get '/seeddump' => 'problems#seeddump', as: "seeddump"
+
   mathjax ''
 
   # The priority is based upon order of creation: first created -> highest priority.

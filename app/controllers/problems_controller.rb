@@ -73,6 +73,14 @@ class ProblemsController < ApplicationController
     redirect_to problem_path(params[:id]) 
   end
 
+  def seeddump
+    if session[:user_admin]
+      @dump = SeedDump.dump(Problem)
+    else
+      @dump = "Remember to sign in!"
+    end
+  end
+
   private
 
     def problem_params

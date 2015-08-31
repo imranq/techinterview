@@ -46,6 +46,9 @@
 		  <p>Last updated <%= time_ago_in_words(Problem.last.created_at) if Problem.last != nil  %> ago</p>
 		  	<% if session[:user_admin] %>
 	     		<%= button_to 'Add a problem', new_problem_path, :class => "add_problem btn btn-danger btn-lg", method: :get %></li></button>
+	     		<br />
+	     		<%= button_to 'Get seed DB', '/seeddump', :class => "seed_dump btn btn-danger btn-lg", method: :get %></li></button>
+
 			<% end %>
 		</div>
 		<div id="main-content">

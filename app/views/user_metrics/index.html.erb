@@ -1,2 +1,7 @@
 <h1>Dashboard</h1>
-<p><%= line_chart UserMetric.group(:problem_id).maximum([:time_accessed - :time_submitted])  %></p>
+<p><%= line_chart UserMetric.group(:problem_id).maximum(:time_accessed)  %></p>
+
+<h1>Questions attempted</h1>
+<p><%= UserMetric.where(:user_id => session[:user_id]).count %></p>
+<p><%= session[:user_id] %></p>
+
